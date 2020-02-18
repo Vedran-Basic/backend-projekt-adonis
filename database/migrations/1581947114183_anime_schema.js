@@ -12,8 +12,6 @@ class AnimeSchema extends Schema {
       table.integer('date Aired')
       table.string('status')
       table.text('summary')
-
-      
     })
   }
 

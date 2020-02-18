@@ -4,79 +4,37 @@
 /** @typedef {import('@adonisjs/framework/src/Response')} Response */
 /** @typedef {import('@adonisjs/framework/src/View')} View */
 
+const Anime = use('App/Models/Anime')
 /**
  * Resourceful controller for interacting with anime
  */
 class AnimeController {
-  /**
-   * Show a list of all anime.
-   * GET anime
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-  async index ({ request, response, view }) {
+  render ({ request, view }) {
+    const guessedNumber = Number(request.input('number'))
+    const randomNumber = Math.floor(Math.random() * 20) + 1
+
+    /** rendering view */
+    return view.render('welcome', { guessedNumber, randomNumber })
   }
 
+  async index ({ request, response, view }) {
+    
+  }
 
-  /**
-   * Create/save a new anime.
-   * POST anime
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async store ({ request, response }) {
   }
 
-  /**
-   * Display a single anime.
-   * GET anime/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
   async show ({ params, request, response, view }) {
   }
 
-  /**
-   * Render a form to update an existing anime.
-   * GET anime/:id/edit
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   * @param {View} ctx.view
-   */
-
-
-
-  /**
-   * Update anime details.
-   * PUT or PATCH anime/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async update ({ params, request, response }) {
-  }
+}
 
-  /**
-   * Delete a anime with id.
-   * DELETE anime/:id
-   *
-   * @param {object} ctx
-   * @param {Request} ctx.request
-   * @param {Response} ctx.response
-   */
   async destroy ({ params, request, response }) {
   }
 }
 
 module.exports = AnimeController
+
+
+await use('Database').table('anime').insert({ name: 'Boku no hero academia', 'date Aired':2008, status:'Completed', summary:'very nice anime :thumbsup:' })
